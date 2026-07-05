@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Obra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Controle de Obra</h1>
+    <form id="obraForm">
+        <input type="text" id="desc" placeholder="Descrição (Ex: Cimento)" required>
+        <input type="number" id="valor" placeholder="Valor (R$)" required>
+        <select id="tipo">
+            <option value="receita">Pagamento Cliente</option>
+            <option value="despesa">Gasto Fornecedor/Ajudante</option>
+        </select>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr><th>Descrição</th><th>Tipo</th><th>Valor</th></tr>
+        </thead>
+        <tbody id="lista"></tbody>
+    </table>
+    <h3>Saldo Final: R$ <span id="saldo">0.00</span></h3>
+</body>
+</html>
