@@ -9,7 +9,7 @@
     <h1>Controle de Obra</h1>
     <form id="obraForm">
         <input type="text" id="desc" placeholder="Descrição (Ex: Cimento)" required>
-        <input type="number" id="valor" placeholder="Valor (R$)" required>
+        <input type="number" id="valor" placeholder="Valor (R$)" required step="0.01">
         <select id="tipo">
             <option value="receita">Pagamento Cliente</option>
             <option value="despesa">Gasto Fornecedor/Ajudante</option>
@@ -24,6 +24,7 @@
         <tbody id="lista"></tbody>
     </table>
     <h3>Saldo Final: R$ <span id="saldo">0.00</span></h3>
+
+    <script src="script.js"></script>
 </body>
 </html>
-  
