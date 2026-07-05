@@ -3,12 +3,16 @@ document.getElementById('obraForm').addEventListener('submit', function(e) {
     
     const desc = document.getElementById('desc').value;
     const valor = parseFloat(document.getElementById('valor').value);
-    const tipo = document.getElementById('tipo').value;
+    const tipo = document.getElementById('tipo').value; // 'receita' ou 'despesa'
     
+    if (isNaN(valor)) return;
+
     const lista = document.getElementById('lista');
     const linha = document.createElement('tr');
     
-    linha.innerHTML = `<td>${desc}</td><td>${tipo}</td><td>${tipo === 'receita' ? '+' : '-'} R$ ${valor.toFixed(2)}</td>`;
+    // Adicionamos uma classe para identificar se é despesa
+    linha.innerHTML = `<td>${desc}</td><td>${tipo}</td><td class="valor-item" data-valor="${valor}" data-tipo="${tipo}">
+                       ${tipo === 'receita' ? '+' : '-'} R$ ${valor.toFixed(2)}</td>`;
     lista.appendChild(linha);
     
     atualizarSaldo();
@@ -17,10 +21,10 @@ document.getElementById('obraForm').addEventListener('submit', function(e) {
 
 function atualizarSaldo() {
     let saldo = 0;
-    document.querySelectorAll('#lista tr').forEach(tr => {
-        const texto = tr.cells[2].innerText;
-        const valor = parseFloat(texto.replace(/[^0-9.-]/g, ''));
-        saldo += texto.includes('+') ? valor : -valor;
+    document.querySelectorAll('.valor-item').forEach(td => {
+        const valor = parseFloat(td.getAttribute('data-valor'));
+        const tipo = td.getAttribute('data-tipo');
+        saldo += (tipo === 'receita') ? valor : -valor;
     });
     document.getElementById('saldo').innerText = saldo.toFixed(2);
 }
